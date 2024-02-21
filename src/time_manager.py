@@ -19,15 +19,9 @@ def create_current_date_file_if_not_exists():
 def write_current_date_to_file(date: datetime.datetime):
     create_data_folder_if_not_exists()
     create_current_date_file_if_not_exists()
-    with open(CURRENT_DATE_FILE, mode='r', newline='') as file:
-        rows = list(csv.reader(file))
-    if not rows:
-        rows.append([date.strftime('%Y-%m-%d')])
-    else:
-        rows[0] = [date.strftime('%Y-%m-%d')]
     with open(CURRENT_DATE_FILE, mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerows(rows)
+        writer.writerow([date.strftime('%Y-%m-%d')])
 
 def read_current_date_from_file():
     create_data_folder_if_not_exists()

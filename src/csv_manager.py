@@ -36,6 +36,8 @@ def append_row_to_csv(file_path, row):
 
 def get_bought_product_info(product_name):
     file_path = os.path.join(DATA_FOLDER, 'bought.csv')
+    if not os.path.exists(file_path):
+        create_bought_csv_if_not_exists()
     with open(file_path, mode='r', newline='') as file:
         reader = csv.DictReader(file)
         for row in reader:
